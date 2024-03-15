@@ -28,4 +28,21 @@ public class ClassroomTest {
         // Then
         Assert.assertEquals(expectedAvg, output);
     }
+
+    @Test
+    public void testAddStudent(){
+        // : Given
+        int maxNumberOfStudents = 1;
+        Classroom classroom = new Classroom(maxNumberOfStudents);
+        ArrayList<Double> examScores = new ArrayList<>(Arrays.asList(100.0, 150.0, 250.0, 0.0));
+        Student student = new Student("Leon", "Hunter", examScores);
+
+        // When
+        String preEnrollment = classroom.getStudents().toString();
+        classroom.addStudent(student);
+        String postEnrollment = classroom.getStudents().toString();
+
+        // Then
+        Assert.assertNotEquals(preEnrollment, postEnrollment);
+    }
 }

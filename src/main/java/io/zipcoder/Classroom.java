@@ -11,8 +11,11 @@ public class Classroom {
     }
     public Classroom(int maxNumStudents){
         this.maxNumStudents = maxNumStudents;
+        this.students = new ArrayList<>();
     }
-    public Classroom(){}
+    public Classroom(){
+        this.students = new ArrayList<>();
+    }
 
 
     public ArrayList<Student> getStudents() {
@@ -25,5 +28,11 @@ public class Classroom {
             sum += i.getAverageExamScore();
         }
         return sum / students.size();
+    }
+
+    public void addStudent(Student student) {
+        if(students.size() < maxNumStudents) {
+            students.add(student);
+        }
     }
 }
