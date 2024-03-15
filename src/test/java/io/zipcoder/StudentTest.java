@@ -56,6 +56,39 @@ public class StudentTest {
         Assert.assertEquals(output, examScores.toString());
     }
 
-    
+    @Test
+    public void testGetAverageExamScore(){
+        // : Given
+        String firstName = "Leon";
+        String lastName = "Hunter";
+        ArrayList<Double> examScores = new ArrayList<>(Arrays.asList(100.0, 150.0, 250.0, 0.0));
+        Student student = new Student(firstName, lastName, examScores);
+
+        // When
+        Double output = student.getAverageExamScore();
+
+        // Then
+        Assert.assertEquals((Double)125.0, output);
+    }
+
+    @Test
+    public void testToString(){
+        // : Given
+        String firstName = "Leon";
+        String lastName = "Hunter";
+        ArrayList<Double> examScores = new ArrayList<>(Arrays.asList(100.0, 150.0, 250.0, 0.0));
+        Student student = new Student(firstName, lastName, examScores);
+        String expectedOutput = "Student Name: Leon Hunter\n" +
+                "> Average Score: 125.0\n" +
+                "> Exam Scores:\n"+
+                "\t\tExam 1 -> 100.0\n"+
+                "\t\tExam 2 -> 150.0\n"+
+                "\t\tExam 3 -> 250.0\n"+
+                "\t\tExam 4 -> 0.0\n";
+        // When
+        String output = student.toString();
+        // Then
+        Assert.assertEquals(expectedOutput, output);
+    }
 
 }

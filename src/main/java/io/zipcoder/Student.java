@@ -45,4 +45,22 @@ public class Student {
     public void setExamScore(int i, double v) {
         examScores.set(i, v);
     }
+
+    public Double getAverageExamScore() {
+        double sum = 0;
+        for(double i : examScores){
+            sum += i;
+        }
+        return sum / getNumberOfExamsTaken();
+    }
+    @Override
+    public String toString(){
+        String output = "Student Name: " + firstName + " " + lastName + "\n" +
+                "> Average Score: " + getAverageExamScore() + "\n" +
+                "> Exam Scores:\n";
+        for(int i = 0; i < examScores.size(); i++){
+            output += "\t\tExam " + (i + 1) + " -> " + examScores.get(i) + "\n";
+        }
+        return output;
+    }
 }
