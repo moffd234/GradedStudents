@@ -38,4 +38,24 @@ public class StudentTest {
     // Then
     Assert.assertEquals(output, examScores.toString());
     }
+
+    @Test
+    public void testSetExamScore(){
+        // : Given
+        String firstName = "Leon";
+        String lastName = "Hunter";
+        ArrayList<Double> examScores = new ArrayList<>();
+        examScores.add(100.0);
+        Student student = new Student(firstName, lastName, examScores);
+
+        // When
+        student.setExamScore(0, 150.0);
+        String output = student.getExamScores();
+
+        // Then
+        Assert.assertEquals(output, examScores.toString());
+    }
+
+    
+
 }

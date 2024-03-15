@@ -41,4 +41,8 @@ public class Student {
     public void addExamScore(double v) {
         examScores.add(v);
     }
+
+    public void setExamScore(int i, double v) {
+        examScores.set(i, v);
+    }
 }
