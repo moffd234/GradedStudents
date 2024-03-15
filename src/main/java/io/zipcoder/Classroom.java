@@ -1,6 +1,6 @@
 package io.zipcoder;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class Classroom {
 
@@ -35,4 +35,53 @@ public class Classroom {
             students.add(student);
         }
     }
+
+    public void removeStudent(String fName, String lName) {
+        students.removeIf(s -> Objects.equals(s.getFirstName(), fName) && Objects.equals(s.getLastName(), lName));
+    }
+
+    ArrayList<Student> getStudentByScore() {
+        students.sort(Comparator.comparingDouble(Student::getAverageExamScore).reversed());
+        return students;
+    }
+
+
+    public Map<Student, Character> getGradeBook(){
+
+        Map<Student, Character> gradeBook = new LinkedHashMap<>();
+        ArrayList<Student> studentList = getStudentByScore();
+
+
+        for(int i = studentList.size() - 1; i >= 0; i--){
+            double percentile = calcPercentile(i, studentList.size());  // Get the percentile
+            char letterGrade = getLetter(percentile); // Get the letter grade corresponding to the percentile
+            gradeBook.put(studentList.get(i), letterGrade); // Add to the gradeBook
+        }
+
+            return gradeBook;
+    }
+
+    public char getLetter(double percentile){
+        if(percentile >= 90.0){
+            return 'A';
+        }
+        if(percentile >= 71.0){
+            return 'B';
+        }
+        if(percentile >= 50.0){
+            return 'C';
+        }
+        if(percentile >= 11.0){
+            return 'D';
+        }
+       return 'F';
+    }
+    public double calcPercentile(int index, int length){
+        // p = n/N * 100
+        index ++;
+
+        double percentile = (double) index /length * 100.0;
+        return Math.round(percentile*100.0) / 100.0;
+    }
+
 }
